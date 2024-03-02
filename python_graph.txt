@@ -1,0 +1,26 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def draw_directed_graph(vertex_count, edge_count, edges):
+    G = nx.DiGraph()
+
+    # Додавання вершин
+    G.add_nodes_from(range(1, vertex_count + 1))
+
+    # Додавання ребер
+    for edge in edges:
+        G.add_edge(edge[0], edge[1])
+
+    # Відображення графа
+    plt.figure(figsize=(3, 3))
+    pos = nx.spring_layout(G)
+    nx.draw(G, pos, with_labels=True, node_size=500, node_color='skyblue', font_weight='bold', arrows=True)
+    plt.title("Directed Graph")
+    plt.show()
+
+# Приклад використання функції для відображення графа
+vertex_count = 9
+edge_count = 15
+edges = [(1, 2), (1, 5), (1, 8), (2, 3), (2, 7), (2, 9), (3, 1), (3, 2), (3, 6), (3, 4), (6, 4), (4, 5), (5, 2), (8, 9), (9, 8)]
+
+draw_directed_graph(vertex_count, edge_count, edges)
